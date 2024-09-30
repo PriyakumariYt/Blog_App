@@ -9,7 +9,8 @@ const blogRoutes = require("./routes/blogRoutes");
 connectDB();
 const app = express();
 const corsOptions = {
-  origin: "http://localhost:5173",
+  // origin: "http://localhost:5173",
+origin: "https://blogger-app-lilac.vercel.app",
 
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD",
   credentials: true,
