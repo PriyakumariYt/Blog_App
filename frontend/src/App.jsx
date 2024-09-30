@@ -9,23 +9,23 @@ import Register from './pages/Register';
 import { AuthProvider } from './context/AuthContext';
 import Footer from './components/Footer';
 
-
 function App() {
   return (
     <AuthProvider>
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/create-blog" element={<CreateBlog />} />
-        <Route path="/update-blog/:id" element={<CreateBlog />} />
-        <Route path="/myblogs" element={<MyBlog />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
-      <Outlet/>
-      <Footer/>
-    </Router>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/create-blog" element={<CreateBlog />} />
+          <Route path="/update-blog/:id" element={<CreateBlog />} />
+          <Route path="/myblogs" element={<MyBlog />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Routes>
+        <Outlet />
+        <Footer />
+      </Router>
+   
     </AuthProvider>
   );
 }

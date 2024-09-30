@@ -16,14 +16,19 @@ const navigate = useNavigate()
     const token = localStorage.getItem('token'); 
 
     try {
-      const response = await axios.post('http://localhost:5000/api/v1/blog/create-blog', {
-        title,
-        description,
-        image,
-        user: user?._id // Use actual user ID
-      }, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await axios.post(
+        "https://blog-app-backend-vert.vercel.app/api/v1/blogs/create-blog",
+        {
+          // const response = await axios.post('http://localhost:5000/api/v1/blog/create-blog', {
+          title,
+          description,
+          image,
+          user: user?._id, // Use actual user ID
+        },
+        {
+          headers: {Authorization: `Bearer ${token}`},
+        }
+      );
       
       console.log('Blog created:', response.data);
       // Clear the input fields after successful blog creation

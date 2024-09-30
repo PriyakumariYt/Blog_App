@@ -92,17 +92,27 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post("http://localhost:5000/api/v1/auth/register", {
-        name,
-        email,
-        password,
-      })
-      .then((response) => {
-        localStorage.setItem("token", response.data.token);
-        navigate("/");
-      })
-      .catch((error) => console.error("Error registering:", error));
+    // axios
+    //   .post("http://localhost:5000/api/v1/auth/register", {
+    //     name,
+    //     email,
+    //     password,
+    //   })
+        axios
+          .post(
+            "https://blog-app-backend-vert.vercel.app/api/v1/auth/register",
+            {
+              name,
+              email,
+              password,
+            }
+          )
+          .then((response) => {
+            localStorage.setItem("token", response.data.token);
+            navigate("/");
+            window.location.reload();
+          })
+          .catch((error) => console.error("Error registering:", error));
   };
 
   return (

@@ -88,12 +88,15 @@ const Login = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    const response = await fetch("http://localhost:5000/api/v1/auth/login", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({email, password}),
-    });
+    const response = await fetch(
+      "https://blog-app-backend-vert.vercel.app/api/v1/auth/login",
+      {
+        // const response = await fetch("http://localhost:5000/api/v1/auth/login", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({email, password}),
+      }
+    );
 
     const data = await response.json();
 
@@ -101,6 +104,7 @@ const Login = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
       navigate("/");
+            window.location.reload();
     } else {
       alert(data.message);
     }

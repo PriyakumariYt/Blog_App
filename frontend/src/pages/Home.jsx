@@ -5,51 +5,25 @@
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AddIcon from "@mui/icons-material/Add";
 import {Typewriter} from "react-simple-typewriter";
+import {Link,useNavigate} from "react-router-dom";
 const Home = () => {
-  // const [blogs, setBlogs] = useState([]);
+   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:5000/api/v1/blog/all-blog')
-  //     .then(response => setBlogs(response.data.blogs))
-  //     .catch(error => console.error('Error fetching blogs:', error));
-  // }, []);
+   const handleClick = () => {
+     const token = localStorage.getItem("token"); // Check if the user is logged in (token exists)
+
+     if (token) {
+       // User is logged in, navigate to create blog page
+       navigate("/create-blog");
+     } else {
+       // User is not logged in, redirect to login page
+       alert("Please log in to create a blog.");
+       navigate("/login");
+     }
+   };
 
   return (
-    // <div>
-    //   <h1>All Blogs</h1>
-    //   <ul>
-    //     {blogs.map(blog => (
-    //       <li key={blog._id}>
-    //         <h2>{blog.title}</h2>
-    //         <p>{blog.description}</p>
-    //       </li>
-    //     ))}
-    //   </ul>
-    // </div>
     <>
-      {/* <div className="container7">
-  <div className="box7">
-          <h1>
-            <span style={{ color: "#D6FB41	" }}>Create.</span>
-            <br />
-            <span style={{ color: "#E3FF73	" }}>Your.</span>
-            <br />
-            <span style={{ color: "#F1FFB9" }}>Blogs.</span>
-          </h1>
-          <p>
-          Publish your passions your way. <br />
-          create a unique and beautiful blog.
-          </p>
-          <div className="box7btn">
-            <h6 style={{ color: "#FFFF66	" }}>
-              <AddIcon /> Create Blogs
-            </h6>
-            <h6 style={{ color: "#FFFF66" }}>
-              <FavoriteIcon /> Get Started
-            </h6>
-          </div>
-        </div>
-      </div> */}
       <div className="container7">
         <div className="box7">
           <h1>
@@ -71,7 +45,13 @@ const Home = () => {
             Create a unique and beautiful blog.
           </p>
           <div className="box7btn">
-            <h6 style={{color: "#FFFF66"}}>
+            {/* <h6 style={{color: "#FFFF66"}}>
+              <AddIcon /> Create Blogs
+            </h6> */}
+            <h6
+              style={{color: "#FFFF66", cursor: "pointer"}}
+              onClick={handleClick}
+            >
               <AddIcon /> Create Blogs
             </h6>
             <h6 style={{color: "#FFFF66"}}>
