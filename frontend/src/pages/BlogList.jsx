@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { getBlogs, deleteBlog } from '../services/api';
+import React, {useEffect, useState} from "react";
+import {getBlogs, deleteBlog} from "../services/api";
 
 const BlogList = () => {
   const [blogs, setBlogs] = useState([]);
@@ -7,7 +7,7 @@ const BlogList = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const { data } = await getBlogs();
+        const {data} = await getBlogs();
         setBlogs(data);
       } catch (err) {
         console.error(err);
@@ -19,9 +19,9 @@ const BlogList = () => {
 
   const handleDelete = async (id) => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       await deleteBlog(id, token);
-      setBlogs(blogs.filter(blog => blog._id !== id));
+      setBlogs(blogs.filter((blog) => blog._id !== id));
     } catch (err) {
       console.error(err);
     }
@@ -30,7 +30,7 @@ const BlogList = () => {
   return (
     <div>
       <h1>Blog List</h1>
-      {blogs.map(blog => (
+      {blogs.map((blog) => (
         <div key={blog._id}>
           <h2>{blog.title}</h2>
           <p>{blog.content}</p>

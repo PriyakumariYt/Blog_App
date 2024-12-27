@@ -1,7 +1,6 @@
-
 const bcrypt = require("bcryptjs");
 // const jwt = require("jsonwebtoken");
-const UserRegister = require("../models/userModel")
+const UserRegister = require("../models/userModel");
 
 /*..........................
 ............................
@@ -11,17 +10,17 @@ RESIGSTRATION LOGIC
 const register = async (req, res) => {
   try {
     console.log(req.body);
-    const { name, email, password } = req.body;
+    const {name, email, password} = req.body;
 
-    const userExist = await UserRegister.findOne({ email });
+    const userExist = await UserRegister.findOne({email});
     if (userExist) {
-      return res.status(400).json({ msg: "Email already exists" });
+      return res.status(400).json({msg: "Email already exists"});
     }
 
     const userCreated = await UserRegister.create({
       name,
       email,
-      password
+      password,
     });
 
     res.status(201).json({
@@ -41,13 +40,13 @@ LOGIN LOGIC
 ........................*/
 const login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const {email, password} = req.body;
 
-    const userExist = await UserRegister.findOne({ email });
+    const userExist = await UserRegister.findOne({email});
     console.log("User found during login:", userExist);
 
     if (!userExist) {
-      return res.status(400).json({ msg: "Invalid User" });
+      return res.status(400).json({msg: "Invalid User"});
     }
 
     const userpassword = await bcrypt.compare(password, userExist.password);
@@ -61,7 +60,7 @@ const login = async (req, res) => {
         userid: userExist._id.toString(),
       });
     } else {
-      res.status(401).json({ msg: "Invalid email and password" });
+      res.status(401).json({msg: "Invalid email and password"});
     }
   } catch (error) {
     console.error("Internal error during login:", error);
@@ -73,19 +72,15 @@ const login = async (req, res) => {
 USER DATA SEND LOGIC IN FRONTEND
 ......................................
 ........................*/
-  const user = async (req, res) => {
-    try {
-      // const userData = await User.find({});
-      const userData = req.user;
-      console.log(userData);
-      return res.status(200).json({ msg: userData });
-    } catch (error) {
-      console.log(` error from user route ${error}`);
-    }
-  };
+const user = async (req, res) => {
+  try {
+    // const userData = await User.find({});
+    const userData = req.user;
+    console.log(userData);
+    return res.status(200).json({msg: userData});
+  } catch (error) {
+    console.log(` error from user route ${error}`);
+  }
+};
 
-
- 
-  
-
-module.exports = { register,login,user };
+module.exports = {register, login, user};

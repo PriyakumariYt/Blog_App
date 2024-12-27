@@ -1,14 +1,13 @@
-
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
-  name: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  blogs: [{ type: mongoose.Types.ObjectId, ref: "Blog" }],
-  tokens: [{ token: { type: String, required: true } }],
+  name: {type: String, required: true, unique: true},
+  email: {type: String, required: true, unique: true},
+  password: {type: String, required: true},
+  blogs: [{type: mongoose.Types.ObjectId, ref: "Blog"}],
+  tokens: [{token: {type: String, required: true}}],
 });
 
 userSchema.pre("save", async function (next) {
@@ -20,7 +19,7 @@ userSchema.pre("save", async function (next) {
     }
     next();
   } catch (error) {
-    console.error('Error during password hashing:', error);
+    console.error("Error during password hashing:", error);
     next(error);
   }
 });
@@ -39,17 +38,16 @@ userSchema.methods.generateToken = async function () {
     if (!this.tokens) {
       this.tokens = [];
     }
-    this.tokens = this.tokens.concat({ token });
+    this.tokens = this.tokens.concat({token});
     await this.save();
 
     return token;
   } catch (error) {
-    console.error('Token generation failed:', error);
-    throw new Error('Token generation failed');
+    console.error("Token generation failed:", error);
+    throw new Error("Token generation failed");
   }
 };
 
 const UserRegister = mongoose.model("UserRegister", userSchema);
 
 module.exports = UserRegister;
-

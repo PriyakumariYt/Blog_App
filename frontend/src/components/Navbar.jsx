@@ -1,5 +1,3 @@
-
-
 import {Link, useNavigate} from "react-router-dom";
 import {useState, useEffect} from "react";
 import {
@@ -49,11 +47,9 @@ const Navbar = () => {
           component="div"
           sx={{
             flexGrow: 1,
-            fontFamily: '"Sofadi One", system-ui', // Adding the font here
+            fontFamily: '"Sofadi One", system-ui',
             fontWeight: 400,
             fontStyle: "normal",
-      
-           
           }}
         >
           <img

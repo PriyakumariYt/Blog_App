@@ -109,6 +109,7 @@ const Register = () => {
           )
           .then((response) => {
             localStorage.setItem("token", response.data.token);
+            window.location.reload();
             navigate("/");
             window.location.reload();
           })

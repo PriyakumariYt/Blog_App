@@ -1,6 +1,4 @@
-
-import { Box, Button, Container, TextField, Typography } from '@mui/material';
-
+import {Box, Button, Container, TextField, Typography} from "@mui/material";
 const Footer = () => {
   return (
     <Box

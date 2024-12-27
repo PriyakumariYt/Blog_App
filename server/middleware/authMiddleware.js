@@ -1,14 +1,12 @@
-
 const jwt = require("jsonwebtoken");
 const UserRegister = require("../models/userModel");
-
 const authMiddleware = async (req, res, next) => {
   const token = req.header("Authorization");
 
   if (!token) {
     return res
       .status(401)
-      .json({ message: "Unauthorized HTTP, Token not provided" });
+      .json({message: "Unauthorized HTTP, Token not provided"});
   }
 
   console.log("Token middleware", token);
@@ -18,7 +16,9 @@ const authMiddleware = async (req, res, next) => {
   try {
     const isVerified = jwt.verify(jwtToken, process.env.SECRET_KEY);
 
-    const userData = await UserRegister.findOne({ email: isVerified.email }).select({
+    const userData = await UserRegister.findOne({
+      email: isVerified.email,
+    }).select({
       password: 0,
     });
 
@@ -29,7 +29,7 @@ const authMiddleware = async (req, res, next) => {
     next();
   } catch (error) {
     console.error("Unauthorized. Invalid token.", error);
-    return res.status(401).json({ message: "Unauthorized. Invalid token." });
+    return res.status(401).json({message: "Unauthorized. Invalid token."});
   }
 };
 

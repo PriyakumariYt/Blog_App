@@ -1,13 +1,12 @@
-
-import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import CreateBlog from './pages/CreateBlog';
-import MyBlog from './pages/MyBlogs';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import { AuthProvider } from './context/AuthContext';
-import Footer from './components/Footer';
+import {BrowserRouter as Router, Route, Routes, Outlet} from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import CreateBlog from "./pages/CreateBlog";
+import MyBlog from "./pages/MyBlogs";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import {AuthProvider} from "./context/AuthContext";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -25,7 +24,6 @@ function App() {
         <Outlet />
         <Footer />
       </Router>
-   
     </AuthProvider>
   );
 }

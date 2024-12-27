@@ -1,26 +1,19 @@
-
-// import { useEffect, useState } from 'react';
-// import axios from 'axios';
-
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import AddIcon from "@mui/icons-material/Add";
 import {Typewriter} from "react-simple-typewriter";
-import {Link,useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 const Home = () => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
 
-   const handleClick = () => {
-     const token = localStorage.getItem("token"); // Check if the user is logged in (token exists)
-
-     if (token) {
-       // User is logged in, navigate to create blog page
-       navigate("/create-blog");
-     } else {
-       // User is not logged in, redirect to login page
-       alert("Please log in to create a blog.");
-       navigate("/login");
-     }
-   };
+  const handleClick = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/create-blog");
+    } else {
+      alert("Please log in to create a blog.");
+      navigate("/login");
+    }
+  };
 
   return (
     <>
@@ -30,12 +23,12 @@ const Home = () => {
             <span style={{color: "#f7dc6f"}}>
               <Typewriter
                 words={["Create.", "Your.", "Blogs."]}
-                loop={true} // Set to true so it loops after deleting
+                loop={true}
                 cursor
                 cursorStyle="|"
-                typeSpeed={100} // Typing speed
-                deleteSpeed={50} // Deleting speed
-                delaySpeed={1000} // Delay before starting to delete
+                typeSpeed={100}
+                deleteSpeed={50}
+                delaySpeed={1000}
               />
             </span>
           </h1>
@@ -45,9 +38,6 @@ const Home = () => {
             Create a unique and beautiful blog.
           </p>
           <div className="box7btn">
-            {/* <h6 style={{color: "#FFFF66"}}>
-              <AddIcon /> Create Blogs
-            </h6> */}
             <h6
               style={{color: "#FFFF66", cursor: "pointer"}}
               onClick={handleClick}
